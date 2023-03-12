@@ -7,7 +7,7 @@ This application doesn't require internet connection. All your passwords are sav
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/24457435/224547072-61735a78-fc72-4e1f-9cc9-95b68a6dd0ac.gif" width="400" height="500">
+<img src="https://user-images.githubusercontent.com/24457435/224547072-61735a78-fc72-4e1f-9cc9-95b68a6dd0ac.gif" width="300" height="500">
 ![ezgif com-optimize-2](https://user-images.githubusercontent.com/24457435/224547081-4e1a97fd-6082-4ae1-a10b-7fc3fbced720.gif)
 ![ezgif com-optimize](https://user-images.githubusercontent.com/24457435/224547084-5e6b15c7-46bd-42a4-8448-598845407222.gif)
 
