@@ -10,7 +10,6 @@ import 'package:moffpass/app/widgets/custom_slider.dart';
 
 class HomeController extends GetxController with GetTickerProviderStateMixin {
   static HomeController get to => Get.find<HomeController>();
-  var categories = [];
   //var menuOptions = ['Add new category', 'Settings', 'About'];
   var menuOptions = [
     MenuOptionModel(
@@ -41,7 +40,6 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   @override
   void onInit() {
     super.onInit();
-    categories = DbService.to.categories;
     categoriesData = DbService.to.categoriesData;
     tabController = TabController(length: categoriesData.length, vsync: this);
     labelNamesTextController =
@@ -116,7 +114,7 @@ class HomeController extends GetxController with GetTickerProviderStateMixin {
   }
 
   String getCategoryFromIndex(int index) {
-    return categories[index];
+    return categoriesData.keys.elementAt(index);
   }
 
   getRecordsFromDb() {
