@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:moffpass/app/data/services/log_service.dart';
@@ -10,7 +13,21 @@ class DbService extends GetxService {
   late Box databaseBox;
 
   Future<DbService> init() async {
-    databaseBox = await Hive.openBox('database');
+    const secureStorage = FlutterSecureStorage();
+    // if key not exists return null
+    final encryptionKey = await secureStorage.read(key: 'encryptionKey');
+    if (encryptionKey == null) {
+      final key = Hive.generateSecureKey();
+      await secureStorage.write(
+        key: 'encryptionKey',
+        value: base64UrlEncode(key),
+      );
+    }
+    final key = await secureStorage.read(key: 'encryptionKey');
+    final decodedKey = base64Url.decode(key!);
+    //print('Encryption key: $encryptionKey');
+    databaseBox = await Hive.openBox('database',
+        encryptionCipher: HiveAesCipher(decodedKey));
     //databaseBox.clear();
     if (databaseBox.isEmpty) {
       categories.value = ['Work', 'Finance', 'Personal'];
@@ -25,20 +42,6 @@ class DbService extends GetxService {
       });
 
       LogService.to.logger.d(categoriesData);
-      // data.values.forEach((element) {
-      //   var e = element as List;
-      //   e.forEach((element) {
-      //     var map = <String, dynamic>{};
-      //     element.forEach((key, value) {
-      //       map[key as String] = value;
-      //     });
-
-      //   });
-      // });
-      // databaseBox.values.forEach((element) {
-      //   categoriesData.add(element);
-      // });
-      //getRecords('Finance');
     }
     return this;
   }

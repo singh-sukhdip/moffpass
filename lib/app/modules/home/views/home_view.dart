@@ -30,7 +30,7 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Icon(
                         value.iconData,
-                        color: AppStyles.primaryColor,
+                        color: Colors.blue,
                       ),
                       const SizedBox(
                         width: 10,
@@ -47,6 +47,7 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.bottomSheet(BottomSheet(
+            enableDrag: false,
             onClosing: () {
               LogService.to.logger.i('Bottomsheet cloese');
               controller.resetNoOfRows();

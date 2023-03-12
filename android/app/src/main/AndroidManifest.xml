@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.nic.moffpass">
+    package="com.sukhdip.antkey">
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
    <application
-        android:label="moffpass"
+        android:label="AntKey"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
